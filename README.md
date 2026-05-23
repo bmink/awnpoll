@@ -12,10 +12,16 @@ Run this periodically from cron via:
 
 ```* * * * * source /path/to/creds.env && /path/to/awnpoll```
 
-## Device
+## Device list
+
+Currently only one device is supported. ```awnpoll``` will simply take the data
+of the first device for the AWN account.
 
 
 ## Data fields stored:
 
 ```awn:last_updated```: Last update timestamp in UTC
+```awn:tempf```: Temp in F
+```awn:tempc```: Temp in C
+
 

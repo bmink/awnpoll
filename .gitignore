@@ -3,3 +3,4 @@ awnpoll
 *.o
 *.swp
 creds.env
+config.env

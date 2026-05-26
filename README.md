@@ -17,3 +17,6 @@ Run this periodically from cron via:
 Currently only one device is supported. ```do_poll.sh``` will simply take the
 data of the first device for the AWN account.
 
+## Printing current values
+
+Use ```./print_vals.sh``` to print the currently stored values.

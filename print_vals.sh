@@ -24,9 +24,9 @@ echo
 echo "Weather ($AGO sec ago)"
 echo "-----------------------------"
 printf "Outdoor temp:  %5.1f °F | %5.1f °C\n" $TEMPF $TEMPC
-printf "Indoor temp :  %5.1f °F | %5.1f °C\n" $TEMPINF $TEMPINC
-printf "Today's low :  %5.1f °F | %5.1f °C\n" $DAYMINF $DAYMINC
-printf "Today's high:  %5.1f °F | %5.1f °C\n" $DAYMAXF $DAYMAXC
 printf "Dew point   :  %5.1f °F | %5.1f °C\n" $DEWP $DEWPC
 printf "Humidity    :  %3d %% \n" $HUMID
+printf "Today's high:  %5.1f °F | %5.1f °C\n" $DAYMAXF $DAYMAXC
+printf "Today's low :  %5.1f °F | %5.1f °C\n" $DAYMINF $DAYMINC
+printf "Indoor temp :  %5.1f °F | %5.1f °C\n" $TEMPINF $TEMPINC
 echo

@@ -14,6 +14,15 @@ AGO=$(( NOW - DATE ))
 DAYMINF=`redis6-cli get "weather:awn:dayminf"`
 DAYMAXF=`redis6-cli get "weather:awn:daymaxf"`
 
+DEW_LABEL=$(awk "BEGIN {
+    d = $DEWP
+    if (d >= 70)      print \"Oppressive/tropical\"
+    else if (d >= 65) print \"Muggy, heavy\"
+    else if (d >= 55) print \"Noticeable humidity\"
+    else if (d >= 35) print \"Comfortable to dry\"
+    else              print \"Very dry\"
+}")
+
 TEMPC=$(f_to_c $TEMPF)
 TEMPINC=$(f_to_c $TEMPINF)
 DEWPC=$(f_to_c $DEWP)
@@ -27,6 +36,6 @@ printf "Outdoor temp:  %5.1f °F | %5.1f °C\n" $TEMPF $TEMPC
 printf "Indoor temp :  %5.1f °F | %5.1f °C\n" $TEMPINF $TEMPINC
 printf "Today's low :  %5.1f °F | %5.1f °C\n" $DAYMINF $DAYMINC
 printf "Today's high:  %5.1f °F | %5.1f °C\n" $DAYMAXF $DAYMAXC
-printf "Dew point   :  %5.1f °F | %5.1f °C\n" $DEWP $DEWPC
+printf "Dew point   :  %5.1f °F | %5.1f °C  %s\n" $DEWP $DEWPC "$DEW_LABEL"
 printf "Humidity    :  %3d%% \n" $HUMID
 echo

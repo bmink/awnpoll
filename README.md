@@ -10,18 +10,10 @@ access mode to ```600``` and *do not store in source control*.
 
 Run this periodically from cron via:
 
-```* * * * * source /path/to/creds.env && /path/to/awnpoll```
+```* * * * * source /path/to/creds.env && /path/to/do_poll```
 
 ## Device list
 
-Currently only one device is supported. ```awnpoll``` will simply take the data
-of the first device for the AWN account.
-
-
-## Data fields stored:
-
-```awn:last_updated```: Last update timestamp in UTC
-```awn:tempf```: Temp in F
-```awn:tempc```: Temp in C
-
+Currently only one device is supported. ```do_poll.sh``` will simply take the
+data of the first device for the AWN account.
 

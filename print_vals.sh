@@ -31,10 +31,10 @@ DAYMAXC=$(f_to_c $DAYMAXF)
 
 echo
 echo "Weather ($AGO sec ago)"
-echo "-----------------------------"
+echo "----------------------------------"
 printf "Outdoor temp:  %5.1f °F | %5.1f °C\n" $TEMPF $TEMPC
 printf "Indoor temp :  %5.1f °F | %5.1f °C\n" $TEMPINF $TEMPINC
-printf "Dew point   :  %5.1f °F | %5.1f °C\n" $DEWP $DEWPC
+printf "Dew point   :  %5.1f °F | %5.1f °C (%s)\n" $DEWP $DEWPC "$DEW_LABEL"
 printf "Humidity    :  %3d %% \n" $HUMID
 printf "Today's high:  %5.1f °F | %5.1f °C\n" $DAYMAXF $DAYMAXC
 printf "Today's low :  %5.1f °F | %5.1f °C\n" $DAYMINF $DAYMINC

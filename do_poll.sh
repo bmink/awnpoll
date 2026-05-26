@@ -43,12 +43,12 @@ else
 	# Compare and update as needed
 
 	DAYMINF=`redis6-cli get "weather:awn:dayminf"`
-	if [ "$TEMPF" -lt "$DAYMINF" ]; then
+	if awk "BEGIN { exit !($TEMPF < $DAYMINF) }"; then
 		redis6-cli set "weather:awn:dayminf" "$TEMPF" > /dev/null
 	fi
 
 	DAYMAXF=`redis6-cli get "weather:awn:daymaxf"`
-	if [ "$TEMPF" -gt "$DAYMAXF" ]; then
+	if awk "BEGIN { exit !($TEMPF > $DAYMAXF) }"; then
 		redis6-cli set "weather:awn:daymaxf" "$TEMPF" > /dev/null
 	fi
 

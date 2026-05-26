@@ -20,11 +20,13 @@ DEWPC=$(f_to_c $DEWP)
 DAYMINC=$(f_to_c $DAYMINF)
 DAYMAXC=$(f_to_c $DAYMAXF)
 
+echo
 echo "Weather ($AGO sec ago)"
 echo "-----------------------------"
-echo "Outdoor temp:  $TEMPF °F ($TEMPC °C)"
-echo "Indoor temp:   $TEMPINF °F ($TEMPINC °C)"
-echo "Humidity:      $HUMID%"
-echo "Dew point:     $DEWP °F ($DEWPC °C)"
-echo "Today's low:   $DAYMINF °F ($DAYMINC °C)"
-echo "Today's high:  $DAYMAXF °F ($DAYMAXC °C)"
+echo "Outdoor temp:  $TEMPF °F | $TEMPC °C"
+echo "Indoor temp :  $TEMPINF °F | $TEMPINC °C"
+echo "Today's low :  $DAYMINF °F | $DAYMINC °C"
+echo "Today's high:  $DAYMAXF °F | $DAYMAXC °C"
+echo "Dew point   :  $DEWP °F | $DEWPC °C"
+echo "Humidity    :  $HUMID%"
+echo

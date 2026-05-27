@@ -3,7 +3,7 @@
 #set -x
 
 source creds.env
- 
+export TZ="America/Los_Angeles"
 
 RESP=`curl -s "https://rt.ambientweather.net/v1/devices?applicationKey=$AWN_APP_KEY&apiKey=$AWN_API_KEY"`
 
@@ -45,13 +45,13 @@ else
 	# Compare and update as needed
 
 	DAYMINF=`redis6-cli get "weather:awn:dayminf"`
-	if awk "BEGIN { exit !($TEMPF < $DAYMINF) }"; then
+	if awk "BEGIN { exit !($TEMPF <= $DAYMINF) }"; then
 		redis6-cli set "weather:awn:dayminf" "$TEMPF" > /dev/null
 		redis6-cli set "weather:awn:daymindate" "$DATE" > /dev/null
 	fi
 
 	DAYMAXF=`redis6-cli get "weather:awn:daymaxf"`
-	if awk "BEGIN { exit !($TEMPF > $DAYMAXF) }"; then
+	if awk "BEGIN { exit !($TEMPF >= $DAYMAXF) }"; then
 		redis6-cli set "weather:awn:daymaxf" "$TEMPF" > /dev/null
 		redis6-cli set "weather:awn:daymaxdate" "$DATE" > /dev/null
 	fi

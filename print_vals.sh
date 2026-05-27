@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export TZ="America/Los_Angeles"
+
 f_to_c() {
     awk "BEGIN {printf \"%.1f\", ($1 - 32) * 5/9}"
 }
@@ -11,8 +13,10 @@ DEWP=`redis6-cli get "weather:awn:dewp"`
 DATE=`redis6-cli get "weather:awn:date"`
 NOW=`date +%s`
 AGO=$(( NOW - DATE ))
-DAYMINF=`redis6-cli get "weather:awn:dayminf"`
 DAYMAXF=`redis6-cli get "weather:awn:daymaxf"`
+DAYMAXDATE=`redis6-cli get "weather:awn:daymaxdate"`
+DAYMINF=`redis6-cli get "weather:awn:dayminf"`
+DAYMINDATE=`redis6-cli get "weather:awn:daymindate"`
 
 DEW_LABEL=$(awk "BEGIN {
     d = $DEWP
@@ -36,7 +40,9 @@ printf "Outdoor temp:  %5.1f °F | %5.1f °C\n" $TEMPF $TEMPC
 printf "Indoor temp :  %5.1f °F | %5.1f °C\n" $TEMPINF $TEMPINC
 printf "Dew point   :  %5.1f °F | %5.1f °C (%s)\n" $DEWP $DEWPC "$DEW_LABEL"
 printf "Humidity    :  %3d %% \n" $HUMID
-printf "Today's high:  %5.1f °F | %5.1f °C\n" $DAYMAXF $DAYMAXC
-printf "Today's low :  %5.1f °F | %5.1f °C\n" $DAYMINF $DAYMINC
+printf "Today's high:  %5.1f °F | %5.1f °C (at %s)\n" $DAYMAXF $DAYMAXC \
+	$(date -d @"$DAYMAXDATE" '+%H:%M')
+printf "Today's low :  %5.1f °F | %5.1f °C (at %s)\n" $DAYMINF $DAYMINC \
+	$(date -d @"$DAYMINDATE" '+%H:%M')
 printf "Indoor temp :  %5.1f °F | %5.1f °C\n" $TEMPINF $TEMPINC
 echo

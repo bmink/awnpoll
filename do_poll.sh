@@ -38,18 +38,22 @@ if [ "$CURDAY" != "$CURMINMAXDAY" ]; then
 
 	redis6-cli set "weather:awn:curminmaxday" "$CURDAY" > /dev/null
 	redis6-cli set "weather:awn:dayminf" "$TEMPF" > /dev/null
+	redis6-cli set "weather:awn:daymindate" "$DATE" > /dev/null
 	redis6-cli set "weather:awn:daymaxf" "$TEMPF" > /dev/null
+	redis6-cli set "weather:awn:daymaxdate" "$DATE" > /dev/null
 else
 	# Compare and update as needed
 
 	DAYMINF=`redis6-cli get "weather:awn:dayminf"`
 	if awk "BEGIN { exit !($TEMPF < $DAYMINF) }"; then
 		redis6-cli set "weather:awn:dayminf" "$TEMPF" > /dev/null
+		redis6-cli set "weather:awn:daymindate" "$DATE" > /dev/null
 	fi
 
 	DAYMAXF=`redis6-cli get "weather:awn:daymaxf"`
 	if awk "BEGIN { exit !($TEMPF > $DAYMAXF) }"; then
 		redis6-cli set "weather:awn:daymaxf" "$TEMPF" > /dev/null
+		redis6-cli set "weather:awn:daymaxdate" "$DATE" > /dev/null
 	fi
 
 fi

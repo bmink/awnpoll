@@ -2,7 +2,6 @@
 
 #set -x
 
-source creds.env
 export TZ="America/Los_Angeles"
 
 RESP=`curl -s "https://rt.ambientweather.net/v1/devices?applicationKey=$AWN_APP_KEY&apiKey=$AWN_API_KEY"`
